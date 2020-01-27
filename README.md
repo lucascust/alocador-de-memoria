@@ -27,4 +27,29 @@ processo.
 
 ### Funcionamento do Algoritmo
 
+O gerenciador de memória será administrado pela manipulação de dicionários em python. O algoritmo recebe um texto com diversos processos, com seus respectivos momentos de entrada, tempo que permanecerá na memória e seu tamanho. O tempo utilizado é em ciclos de relógio (clock). Esses dados são    transformados em estruturas: a representação da mememória física, e os momentos de entrada e saída dos processos são mantidos em dicionários.
+
+#### Formato da entrada do código
+A entrada é dada por um arquivo .txt da seguinte forma:
+```
+...
+017 39 073
+043 45 172
+013 28 073
+...
+```
+Cada linha é um processo, o pimeiro valor é o ciclo que o processo entrará na memória, o segundo valor representa o tempo de execução do processo e por fim, o ultimo valor é o tamanho do processo.
+
+#### Geração das estruturas iniciais
+
+Após receber documento de entrada, o algoritmo gera três estruturas: 
+- Dicionário de entrada: Possui todos os momentos que haverá entrada de processos na memória, para cada momento todos os processos que entrarão (caso entrem procesos simultâneamente naquele ciclo) serão armazenados em uma lista.
+- Dicionário de saída: Através dos dados recebidos, estima-se o momento de saída dos processos e cria um dicionário similar ao de entras, porém, os tempos representam o momento de saída.
+- Lista de tamanhos: Uma lista ordenada com os tamanhos do processo
+
+Os dicionários de entrada e saída possuem o tempo de clock como ***chave***, e como ***valor*** da chave, a lista dos processos a serem inseridos/removidos da memória. A imagem abaixo ilustra essa estrutura.
+
+<h4 align="center">
+    <img alt="inoutdic" src="https://res.cloudinary.com/df8snvgem/image/upload/c_scale,h_500/v1579974872/alocador-de-memoria/dicionarios-iniciais_qx7bsm.jpg" />
+</h4>
 
