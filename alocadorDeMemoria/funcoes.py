@@ -12,7 +12,7 @@
         #5º Variáveis iniciadas em mínuscula, SEM ´~^-_+= etc, SEM "De", se tiver mais de uma palavra, esta, deve ser iniciada em maíuscula
             #ex: meuNomeE, variavelSaida
 
-#Extrai valores do txt para criar as estruturas 
+#Extrai valores do txt para criar as estruturas
 def interpreta(arquivo):
     arq = open(arquivo,"r")
     processos = arq.readlines()

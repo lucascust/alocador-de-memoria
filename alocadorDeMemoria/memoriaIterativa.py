@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import tkinter as tk
 from tkinter import messagebox
-import algoritmo, aicSpider
+import algoritmo
+import aicSpider
+
 
 class SampleApp(tk.Tk):
     def __init__(self):
@@ -18,7 +20,7 @@ class SampleApp(tk.Tk):
         self._frame.grid()
 
 
-#Classe da primeira janela
+# Classe da primeira janela
 class StartPage(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
@@ -37,7 +39,7 @@ class StartPage(tk.Frame):
         master.geometry("%dx%d+%d+%d" % (larguraDaJanela, alturaDaJanela, Xjanela,Yjanela))
         ############################
 
-        #Variáveis para orientação automatizada da posição dos elementos na janela
+        # Variáveis para orientação automatizada da posição dos elementos na janela
         j = 0
         i = 0
 
@@ -68,7 +70,7 @@ class StartPage(tk.Frame):
         optionWorst.grid(column=i, row=j)
         j+=1
 
-        ##Inicialização do algorítmo
+        ## Inicialização do algorítmo
         def botaoPressionado(PageTwo):
           global modo
           modo = selected.get()
@@ -106,8 +108,8 @@ class PageTwo(tk.Frame):
         ##########################
 
         #Função que gera uma cor aleatória
-        def geraCor(posicaoProcesso,tamProcesso):
-          codigoCor = '#'+str(abs(tamProcesso-posicaoProcesso))
+        def geraCor(posicaoProcesso, tamProcesso):
+          codigoCor = '#'+str(abs(tamProcesso - posicaoProcesso))
           for i in range(len(codigoCor),7):
             codigoCor = codigoCor + "f"
           #Retorna um hexadecimal aleatório de seis digitos"#??????"
@@ -119,7 +121,7 @@ class PageTwo(tk.Frame):
         # Cria as linhas que formam a memória
         def criaLinhas():
           lista = []
-          i,x,y,y1 = 0,20,1,80
+          i, x, y, y1 = 0, 20, 1, 80
           while (x < (larguraDaJanela-20)):
             lista.append(canvas.create_line(x, y, x, y1, fill="#a0a0a0"))
             x += 1

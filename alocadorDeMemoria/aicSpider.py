@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import pi
 
+
 def padronizaMatriz(matriz):
-  maiores=[]
+  maiores = []
   matriz = matriz.astype(float)
   matriz = matriz.transpose()
   for i in range(len(matriz)):
@@ -21,8 +22,8 @@ def main(matrizGeral):
   # Numero de categorias para plotar
   n = 4
   # Nome das variáveis
-  #categorias=["Tempo Médio de Espera de Processos", "Número de Tentativas Falhas","Nível de Fragmentação da Memória","Tempo Médio para Alocação de Processos"]
-  categorias=["TME", "NTF","NFM","TMA"]
+  # categorias=["Tempo Médio de Espera de Processos", "Número de Tentativas Falhas","Nível de Fragmentação da Memória","Tempo Médio para Alocação de Processos"]
+  categorias = ["TME", "NTF","NFM","TMA"]
   
   for i in range(len(matrizGeral)):
     del(matrizGeral[i][0])
@@ -105,7 +106,7 @@ def main(matrizGeral):
 
 
   #Cria uma segunda figura para servir de espaço para legenda dos textos
-  ax2 = fig.add_subplot(122,frameon=False)
+  ax2 = fig.add_subplot(122, frameon=False)
   # Deixa figura sem eixos
   ax2.axes.get_xaxis().set_visible(False)
   ax2.axes.get_yaxis().set_visible(False)
