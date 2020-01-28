@@ -1,14 +1,17 @@
 # Alocador de Memória Interativo
+
 [Lucas Custódio](https://github.com/lucascust) e [Frederico Bender](https://github.com/FredericoBender)
 
 Software desenvolvido em Python com representação visual de uma memória primária sendo alocada por processos através de três famigeradas heurísticas: First Fit, Best Fit e Worst Fit. Além disso, o algoritmo apresenta um gráfico Spider com indicadores de performance para comparação do desempenho das heurísticas após a simulação.
 
-**Tecnologias e estruturas usadas: Dicionários Python, matplotlib, listas encadeadas.**
+**Tecnologias e estruturas usadas: Dicionários Python, matplotlib, tkinter, listas encadeadas.**
 
-### Resumo do Funcionamento do Projeto
-O software apresenta uma janela com inputs  recebe um documento de texto com todos os processos que entrarão na memória, informando o tamanho e quanto tempo permanecerá. Com os dados, executa-se o algoritmo de alocação para as três heurísticas. Uma janela interativa permite o usuário a acompanhar o passo a passo da metodologia escolhida e por fim mostra um gráfico de desempenho de cada heurística para comparações.
+## Resumo do Projeto
+---
+O software apresenta uma janela com inputs para inserir o tamanho total da memoria e a heurístida desejada para visualização. Em seguida recebe um documento de texto com todos os processos que entrarão na memória, informando o tamanho e quanto tempo permanecerá. Com os dados, executa-se o algoritmo de alocação para as três heurísticas. Uma janela interativa permite o usuário a acompanhar o passo a passo da metodologia escolhida e por fim mostra um gráfico de desempenho de cada heurística para comparações.
 
-### Entendendo as heuristicas para o alocamento de um processo na memória
+## Entendendo as heuristicas para o alocamento de um processo na memória
+---
 Para ilustrar as heurísticas, consideremos uma ilustração de uma memória com alguns processos alocados e também alguns espaços livres. No exemplo o Sistema Operacional precisa alocar um processo de 5kb e existem diferentes possibilidades de espaços disponíveis. Abaixo é apresentado como cada metodologia alocaria o processo:
 
 - First Fit: O processo é alocado no primeiro espaço disponível encontrado pelas comparações do algoritmo.
@@ -28,11 +31,12 @@ processo.
     <img alt="worst-fit" src="https://res.cloudinary.com/df8snvgem/image/upload/c_scale,h_300/v1579971567/alocador-de-memoria/worst-fit_cwoj7r.png" />
 </h4>
 
-### Funcionamento do Algoritmo
-
+## Funcionamento do Algoritmo
+---
 O gerenciador de memória será administrado pela manipulação de dicionários em python. O algoritmo recebe um texto com diversos processos, com seus respectivos momentos de entrada, tempo que permanecerá na memória e seu tamanho. O tempo utilizado é em ciclos de relógio (clock). Esses dados são    transformados em estruturas: a representação da mememória física, e os momentos de entrada e saída dos processos são mantidos em dicionários.
 
-#### Formato da entrada do código
+### Formato da entrada do código
+---
 A entrada é dada por um arquivo .txt da seguinte forma:
 ```
 ...
@@ -43,8 +47,8 @@ A entrada é dada por um arquivo .txt da seguinte forma:
 ```
 Cada linha é um processo, o pimeiro valor é o ciclo que o processo entrará na memória, o segundo valor representa o tempo de execução do processo e por fim, o ultimo valor é o tamanho do processo.
 
-#### Geração das estruturas iniciais
-
+### Geração das estruturas iniciais
+---
 Após receber documento de entrada, o algoritmo gera três estruturas: 
 - Dicionário de entrada: Possui todos os momentos que haverá entrada de processos na memória, para cada momento todos os processos que entrarão (caso entrem procesos simultâneamente naquele ciclo) serão armazenados em uma lista.
 - Dicionário de saída: Através dos dados recebidos, estima-se o momento de saída dos processos e cria um dicionário similar ao de entras, porém, os tempos representam o momento de saída.
@@ -53,11 +57,11 @@ Após receber documento de entrada, o algoritmo gera três estruturas:
 Os dicionários de entrada e saída possuem o tempo de clock como ***chave***, e como ***valor*** da chave, a lista dos processos a serem inseridos/removidos da memória. A imagem abaixo ilustra essa estrutura.
 
 <h4 align="center">
-    <img alt="inoutdic" src="https://res.cloudinary.com/df8snvgem/image/upload/c_scale,h_400/v1579974872/alocador-de-memoria/dicionarios-iniciais_qx7bsm.jpg" />
+    <img alt="inoutdic" src="https://res.cloudinary.com/df8snvgem/image/upload/c_scale,h_300/v1579974872/alocador-de-memoria/dicionarios-iniciais_qx7bsm.jpg" />
 </h4>
 
-#### Memória principal
-
+### Memória principal
+---
 A memória é “representada” por um terceiro dicionário, onde as chaves serão os processos que estão atualmente na memória. O valor dessas chaves será uma lista de tamanho 4, seus significados são expressados na figura abaixo.
 
 <h4 align="center">
@@ -72,10 +76,16 @@ A lista-valor armazena em suas duas primeiras posições, os valores **X** e **Y
 
 Os valores de encadeamento **A** e **P**  são utilizados para saber entre quais processos (em qual epaço) na memória o cálculo do tamanho dos espaços deve ser feito. Cada vez que um elemento for inserido ou removido, esses valores devem ser atualizados para continuar correspondendo a lógica. Sendo capaz de calcular o tamanho dos espaços na memória Através das estruturas citadas, é possível calcular o tamanho dos espaços na memória, com isso, basta aplicar as heurísticas propostas para gerenciar a memória. 
 
-#### Interface Gráfica
+### Interface Gráfica
+---
+Utilizando o módulo Tkinter, É gerado a representação da memória vazia (cinza) e botões para escolha do ciclo atual. Ao avançar os ciclos, cores em tom de azul preenchem parte da memória para representar os diferentes processos. 
 
-#### Resultados - Spider Graph Matplotlib 
+<!-- imagem -->
 
+A implementação gráfica dessa memória se dá por uma série de linhas verticais lado a lado. Inicialmente todas cinzas, são trocadas de cor a medida que os processos são alocados na memória. O tamanho do processo a ser preenchido é calculado como proporção da memória total em relação ao número de linhas, substituindo o número de linhas correspondentes. Leva-se em conta tembém a posição, estimada igualmente com a proproção tamanho-linhas.
+
+### Resultados - Spider Graph com Matplotlib 
+---
 A fim de análise do desempenho das heurísticas, é utilizado métricas de performance que são calculadas ao longo da execução do algoritmo. O funcionamento e o objetivo das métricas são:
 
 - Tempo Médio de Espera de Processos (TMEP):
@@ -92,8 +102,8 @@ Mostra o número de espaços a memória, pois um maior número de "buracos" impl
 
 **OBS**: Durante esta medida, o tempo transcorrido pelo medidor de tempo do dado: Tempo Médio para Alocação de Processos, deverá ser pausado.
 
-##### Apresentação das métricas
-
+### Apresentação das métricas
+---
 Para apresentar as métricas, é necessário normalizar os dados, pois a magnitude dos valores é discrepante. Logo, os valores são transformados em proporções, baseadas no resultado de maior valor. O programa gera um gráfico em teia com o resultado dos cálculos de cada métrica e de forma sobreposta, para cada heurística, como apresentado na figura a seguir:
 
 <!-- /FIGURA --> 
