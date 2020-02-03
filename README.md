@@ -88,16 +88,16 @@ A implementação gráfica dessa memória se dá por uma série de linhas vertic
 ---
 A fim de análise do desempenho das heurísticas, é utilizado métricas de performance que são calculadas ao longo da execução do algoritmo. O funcionamento e o objetivo das métricas são:
 
-- Tempo Médio de Espera de Processos (TMEP):
+- **Tempo Médio de Espera de Processos (TMEP)**:
 Informa quantos ciclos em média um processo aguarda para ser inserido na memória. A partir do momento que um processo não conseguir entrar na memória, um contador, que será sempre inicializado em 0, será incrementado em 1. Quando o processo for inserido com sucesso a memória, esse contador, será adicionado a uma lista, que vai conter o tempo de espera que cada processo teve até sua inserção, no fim, basta fazer a média dos valores na lista.
 
-- Tempo Médio para Alocação de Processos (TMAP):
+- **Tempo Médio para Alocação de Processos (TMAP)**:
 Assim que o Tempo Médio de Espera do processo atual for inserido a lista, será utilizada uma função simples do Python para medir o tempo até o momento em que o algoritmo encontre o local de inserção do elemento. Apesar de fazer uma análise temporal da execução de um algoritmo ser algo instável para que se tenha uma conclusão confiável, essa informação pode ajudar a ilustrar a diferença de performance das heurísticas.
 
-- Número de Tentativas Falhas (NTF):
+- **Número de Tentativas Falhas (NTF)**:
 Este indicador mostra quantas vezes um processo não pode ser alocado. Cada vez que um processo tentar alocar um bloco da memória, e não existir espaço disponível para ela, um contador é incrementado.
 
-- Nível de Fragmentação da Memória (NFM):
+- **Nível de Fragmentação da Memória (NFM)**:
 Mostra o número de espaços a memória, pois um maior número de "buracos" implica em inutilização de espaços na memória podendo impedir processos de ser alocados mesmo quando há espaço disponível na memória. A cada ciclo de CLOCK, vamos utilizar um contador, para verificar quantos buracos de espaços livres existem na memória e adicionar em uma lista, para calcular a média de buracos existentes por ciclo de CLOCK no final. 
 
 **OBS**: Durante esta medida, o tempo transcorrido pelo medidor de tempo do dado: Tempo Médio para Alocação de Processos, deverá ser pausado.
